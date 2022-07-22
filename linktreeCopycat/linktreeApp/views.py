@@ -1,9 +1,5 @@
 from django.shortcuts import render, redirect
 
-from django.http import HttpResponse
-
-from .models import Book
-
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
@@ -11,21 +7,8 @@ from django.contrib.auth.models import User
 from .forms import UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
 
-#from django.contrib.auth import get_user_model
-#User = get_user_model()
-#users = User.objects.all()
-
 def index(request):
     return render(request, 'index.html')
-
-def book_by_id(request, book_id):
-    book = Book.objects.get(pk=book_id)
-    return render(request, 'book_details.html', {'book':book})
-    #return HttpResponse(f"Book: {book.title}, published on {book.pub_date}")
-
-#def user_page(request, user_id):
-    #user = User.objects.get(pk=user_id)
-    #return render(request, "user_details.html", {'user':user})
 
 def profile(request, username):
     uid = User.objects.filter(username=username).first()
