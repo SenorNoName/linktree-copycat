@@ -8,6 +8,18 @@
 
 {% block content %}
 <h1>NetworkSapling</h1>
+<button class="button-21", class="button-home">Profile</button>
+<button class="button-21", class="button-home">Login</button>
+<button class="button-21", class="button-home">Logout</button>
+<button class="button-21", class="button-home">Register</button>
+<button id="search_button", class="button-21", class="button-home">Search</button>
+<input id="search_box" type="text" placeholder="Search...">
+<script>
+    var button = document.getElementById("search_button")
+    button.addEventListener("click", function() {
+        location.href = '/profile/' + document.getElementById("search_box").value
+    })
+</script>
 <div class="box">
     <img class="sapling" src="media/NetworkSapling.png"></img>
 </div>
