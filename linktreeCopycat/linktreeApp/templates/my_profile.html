@@ -1,9 +1,21 @@
+{% extends "index.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
   <img src="{{ user.profile.image.url }}">
   <h2>{{ user.username }}</h2>
   <p>{{ user.email }}</p>
-  <p>{{ uid.links }}</p>
+  <p id="links">{{ user.profile.links }}</p>
+  <script>
+    var linkList = document.getElementById("links").textContent.split(", ")
+    for (let i = 0; i < linkList.length; i++) {
+      var button = document.createElement("button")
+      button.innerText = linkList[i]
+      button.addEventListener("click", function() {
+        window.location.replace(linkList[i])
+      })
+      document.body.appendChild(button)
+    }
+  </script>
     <form method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <fieldset class="form-group">

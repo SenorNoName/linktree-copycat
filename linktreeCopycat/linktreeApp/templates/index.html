@@ -1,8 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
 <body>
 
+{% block content %}
 <h1>Linktree</h1>
+{% endblock %}
 
 </body>
 </html>
