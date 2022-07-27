@@ -1,3 +1,26 @@
 h2 {
-    font-family: monospace;
+    font-family:monospace;
 }
+
+h1 {
+    text-align: center;
+    border: 5px solid white;
+    background-color: lightblue;
+    color: black;
+    font-family: monospace;
+  }
+  body {
+    background-color: black;
+    color: lightblue;
+  }
+  .box {
+    margin: auto;
+    height: 135px;
+    width: 150px;
+    border: 5px solid white;
+    background-color: lightblue;
+  }
+  
+  .sapling {
+    margin: auto;
+  }
