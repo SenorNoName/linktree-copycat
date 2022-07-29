@@ -2,7 +2,8 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-  <h1>NetworkSapling</h1>
+  <a href="/"><h1>NetworkSapling</h1></a>
+  <a href="/logout"><button style="position: absolute; margin-left: 90%;" class="blue-button">Logout</button></a>
 
   <img class="profile" src="{{ user.profile.image.url }}">
   <h2 style="text-align: center">{{ user.username }}</h2>
@@ -10,6 +11,7 @@
   <p id="links", style="display: none;" style="text-align: center">{{ user.profile.links }}</p>
 
   <script>
+    //creates clickable buttons for each inputted link
     var linkList = document.getElementById("links").textContent.split(", ")
 
     for (let i = 0; i < linkList.length; i++) {

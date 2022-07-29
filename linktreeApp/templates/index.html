@@ -4,6 +4,8 @@
 <html>
 
 <head>
+    <title>NetworkSapling</title>
+    <link rel="icon" type="image/x-icon" href="/media/NetworkSapling.png">
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
 
@@ -36,6 +38,7 @@
 <h1 style="margin-top: -5%">~~~~~</h1>
 
 <script>
+    //enables anyone to search for any user's profile by redirecting to /profile/username_inputted
     var button = document.getElementById("search_button")
     button.addEventListener("click", function() {
         location.href = '/profile/' + document.getElementById("search_box").value
