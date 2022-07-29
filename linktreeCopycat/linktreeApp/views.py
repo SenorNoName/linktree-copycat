@@ -1,13 +1,9 @@
 from types import NoneType
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
-from django.contrib.auth.decorators import login_required
-
 from django.contrib.auth.models import User
 
 from .forms import UserUpdateForm, ProfileUpdateForm
-from django.contrib import messages
 
 def index(request):
     return render(request, 'index.html')
@@ -28,7 +24,6 @@ def my_profile(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, f'Your account has been updated!')
             return redirect('profile')
     else:
         u_form = UserUpdateForm(instance=request.user)

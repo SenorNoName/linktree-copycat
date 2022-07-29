@@ -1,31 +1,47 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
-<body>
 
+<body>
 {% block content %}
+
 <h1>NetworkSapling</h1>
-<div class="navbar">
-    <a href="/profile"><button class="button-21", class="button-home">Profile</button></a>
-    <a href="/login"><button class="button-21", class="button-home">Login</button></a>
-    <a href="/logout"><button class="button-21", class="button-home">Logout</button></a>
-    <a href="/register"><button class="button-21", class="button-home">Register</button></a>
-    <button id="search_button", class="button-21", class="button-home">Search</button>
-    <input id="search_box" type="text" placeholder="Search...">
+
+<div style="width: 50%;">
+    <a href="/profile"><button class="blue-button">Profile</button></a>
+    <a href="/login"><button class="blue-button">Login</button></a>
+    <a href="/logout"><button class="blue-button">Logout</button></a>
+    <a href="/register"><button class="blue-button">Register</button></a>
 </div>
-<div class="box">
-    <img class="sapling" src="media/NetworkSapling.png"></img>
+
+<div style="position: relative; bottom:35px; left:50%; width: 50%;">
+    <input style="margin-left: 60%;" id="search_box" type="text" placeholder="Search...">
+    <button style="position: absolute;" id="search_button", class="blue-button">Search</button>
+    <div style="margin-left: 5%;" class="box">
+        <img style="margin-left: -10%;" src="media/NetworkSapling.png"></img>
+    </div>
 </div>
+
+<div style="width: 40%;">
+    <p style="font-size: 25px; position: relative; bottom: 400px">Welcome to NetworkSapling, 
+        our copycat website based on Linktree coded using Django, Python, HTML, and CSS. 
+        Created by Calvin, Ian, and Shawn.</p>
+</div>
+
+<h1 style="margin-top: -5%">~~~~~</h1>
+
 <script>
     var button = document.getElementById("search_button")
     button.addEventListener("click", function() {
         location.href = '/profile/' + document.getElementById("search_box").value
     })
 </script>
-{% endblock %}
 
+{% endblock %}
 </body>
 </html>

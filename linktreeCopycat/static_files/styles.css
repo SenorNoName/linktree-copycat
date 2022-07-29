@@ -31,7 +31,7 @@ body {
     display: none;
 }
 
-.button-21 {
+.blue-button {
   align-items: center;
   appearance: none;
   background-color: #3EB2FD;
@@ -61,16 +61,16 @@ body {
   white-space: nowrap;
 }
 
-.button-21:active,
-.button-21:focus {
+.blue-button:active,
+.blue-button:focus {
   outline: none;
 }
 
-.button-21:hover {
+.blue-button:hover {
   background-position: -20px -20px;
 }
 
-.button-21:focus:not(:active) {
+.blue-button:focus:not(:active) {
   box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
 }
 

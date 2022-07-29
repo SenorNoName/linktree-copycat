@@ -1,22 +1,30 @@
 {% extends "index.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+
   <h1>NetworkSapling</h1>
+
   <img class="profile" src="{{ uid.profile.image.url }}">
-  <h2 class="center">{{ uid.username }}</h2>
-  <p class="center">{{ uid.email }}</p>
-  <p id="links" class="invisible">{{ uid.profile.links }}</p>
+  <h2 style="text-align: center">{{ uid.username }}</h2>
+  <p style="text-align: center">{{ uid.email }}</p>
+  <p id="links" style="display: none;">{{ uid.profile.links }}</p>
+
   <script>
     var linkList = document.getElementById("links").textContent.split(", ")
+
     for (let i = 0; i < linkList.length; i++) {
       var button = document.createElement("button")
+
       button.innerText = new URL(linkList[i]).hostname.replace('www.', '')
-      button.classList.add("button-21")
+      button.classList.add("blue-button")
       button.classList.add("button-profile")
+
       button.addEventListener("click", function() {
         window.location.replace(linkList[i])
       })
+
       document.body.appendChild(button)
     }
   </script>
+  
 {% endblock content %}

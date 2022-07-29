@@ -1,34 +1,43 @@
 {% extends "index.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+
   <h1>NetworkSapling</h1>
+
   <img class="profile" src="{{ user.profile.image.url }}">
-  <h2 class="center">{{ user.username }}</h2>
-  <p class="center">{{ user.email }}</p>
-  <p id="links", class="invisible" class="center">{{ user.profile.links }}</p>
+  <h2 style="text-align: center">{{ user.username }}</h2>
+  <p style="text-align: center">{{ user.email }}</p>
+  <p id="links", style="display: none;" style="text-align: center">{{ user.profile.links }}</p>
+
   <script>
     var linkList = document.getElementById("links").textContent.split(", ")
+
     for (let i = 0; i < linkList.length; i++) {
       var button = document.createElement("button")
+      
       button.innerText = new URL(linkList[i]).hostname.replace('www.', '')
-      button.classList.add("button-21")
+      button.classList.add("blue-button")
       button.classList.add("button-profile")
+
       button.addEventListener("click", function() {
         window.location.replace(linkList[i])
       })
+
       document.body.appendChild(button)
     }
   </script>
-    <form method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      <fieldset class="form-group">
-        <legend class="border-bottom mb-4">Update Profile Info</legend>
-          {{ u_form|crispy }}
-          {{ p_form|crispy }}
-      </fieldset>
-      <div class="form-group">
-        <p>*separate each link by a comma and a space</p>
-        <button class="button-21" type="submit">Update</button>
-      </div>
-    </form>
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Update Profile Info</legend>
+        {{ u_form|crispy }}
+        {{ p_form|crispy }}
+    </fieldset>
+    <div class="form-group">
+      <p>*separate each link by a comma and a space</p>
+      <button class="blue-button" type="submit">Update</button>
+    </div>
+  </form>
+
 {% endblock content %}

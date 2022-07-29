@@ -1,5 +1,6 @@
-h2 {
-    font-family:monospace;
+body {
+    background-color: rgb(19, 19, 19);
+    color: lightblue;
 }
 
 h1 {
@@ -10,28 +11,46 @@ h1 {
     font-family: monospace;
 }
 
-body {
-    background-color: black;
-    color: lightblue;
+h2 {
+    font-family:monospace;
+}
+
+p {
+    font-family: monospace;
+}
+
+.form-group {
+    font-family: monospace;
+    font-size: large;
 }
 
 .box {
-    margin: auto;
-    height: 135px;
-    width: 150px;
+    margin-bottom: auto;
+    height: 400px;
+    width: 400px;
     border: 5px solid white;
     background-color: lightblue;
 }
-  
-.sapling {
+
+.box img {
     margin: auto;
+    width: 125%;
+    height: auto;
 }
 
-.invisible {
-    display: none;
+.profile {
+    min-width: 200px;
+    min-height: 200px;
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 50%;
+    border: 5px solid lightblue;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
-.button-21 {
+.blue-button {
   align-items: center;
   appearance: none;
   background-color: lightblue;
@@ -59,50 +78,21 @@ body {
   white-space: nowrap;
 }
 
-.button-21:active,
-.button-21:focus {
+.blue-button:active,
+.blue-button:focus {
   outline: none;
 }
 
-.button-21:hover {
+.blue-button:hover {
   background-position: -20px -20px;
 }
 
-.button-21:focus:not(:active) {
+.blue-button:focus:not(:active) {
   box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
-}
-
-.profile {
-    min-width: 200px;
-    min-height: 200px;
-    max-width: 200px;
-    max-height: 200px;
-    border-radius: 50%;
-    border: 5px solid lightblue;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
-
-.center {
-    text-align: center;
 }
 
 .button-profile {
     margin: auto;
     width: 70%;
     display: block;
-}
-
-.form-group {
-    font-family: monospace;
-    font-size: large;
-}
-
-p {
-    font-family: monospace;
-}
-
-.navbar {
-    margin: auto;
 }
