@@ -1,3 +1,5 @@
+from types import NoneType
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from django.contrib.auth.decorators import login_required
@@ -12,10 +14,14 @@ def index(request):
 
 def profile(request, username):
     uid = User.objects.filter(username=username).first()
+    if type(uid) is NoneType:
+        return HttpResponse("Error: This user does not exist.", content_type='text/plain')
     return render(request, 'profile.html', {'username':username, 'uid':uid})
 
-@login_required
 def my_profile(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)

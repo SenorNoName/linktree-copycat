@@ -8,21 +8,23 @@
 
 {% block content %}
 <h1>NetworkSapling</h1>
-<button class="button-21", class="button-home">Profile</button>
-<button class="button-21", class="button-home">Login</button>
-<button class="button-21", class="button-home">Logout</button>
-<button class="button-21", class="button-home">Register</button>
-<button id="search_button", class="button-21", class="button-home">Search</button>
-<input id="search_box" type="text" placeholder="Search...">
+<div class="navbar">
+    <a href="/profile"><button class="button-21", class="button-home">Profile</button></a>
+    <a href="/login"><button class="button-21", class="button-home">Login</button></a>
+    <a href="/logout"><button class="button-21", class="button-home">Logout</button></a>
+    <a href="/register"><button class="button-21", class="button-home">Register</button></a>
+    <button id="search_button", class="button-21", class="button-home">Search</button>
+    <input id="search_box" type="text" placeholder="Search...">
+</div>
+<div class="box">
+    <img class="sapling" src="media/NetworkSapling.png"></img>
+</div>
 <script>
     var button = document.getElementById("search_button")
     button.addEventListener("click", function() {
         location.href = '/profile/' + document.getElementById("search_box").value
     })
 </script>
-<div class="box">
-    <img class="sapling" src="media/NetworkSapling.png"></img>
-</div>
 {% endblock %}
 
 </body>

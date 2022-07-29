@@ -43,7 +43,7 @@ body {
   box-sizing: border-box;
   color: #000000;
   cursor: pointer;
-  font-family: CircularStd,sans-serif;
+  font-family: monospace;
   font-size: 1rem;
   height: auto;
   justify-content: center;
@@ -92,4 +92,17 @@ body {
     margin: auto;
     width: 70%;
     display: block;
+}
+
+.form-group {
+    font-family: monospace;
+    font-size: large;
+}
+
+p {
+    font-family: monospace;
+}
+
+.navbar {
+    margin: auto;
 }
