@@ -2,8 +2,11 @@ from types import NoneType
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from linkpreview import link_preview
 
-from .forms import UserUpdateForm, ProfileUpdateForm
+from linktreeApp.models import Link
+
+from .forms import LinkUpdateForm, UserUpdateForm, ProfileUpdateForm
 
 #homepage
 def index(request):
@@ -24,7 +27,7 @@ def my_profile(request):
         return redirect('login')
 
     #displays Update Profile Info form where users can update their profile info
-    if request.method == 'POST':
+    if request.method == 'POST' and 'update_profile' in request.POST:
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
         if u_form.is_valid() and p_form.is_valid():
@@ -35,9 +38,24 @@ def my_profile(request):
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
+    #allows user to add links to their profile
+    if request.method == 'POST' and 'add_link' in request.POST:
+        Link.objects.create(profile=request.user.profile)
+        l_form = LinkUpdateForm(request.POST, instance=request.user.profile.link_set.all().last())
+        if l_form.is_valid():
+            l_form.save()
+            return redirect('profile')
+    else:
+        l_form = LinkUpdateForm()
+
+    #allows user to delete links from their profile
+    if request.method == 'POST' and 'delete_link' in request.POST:
+        request.user.profile.link_set.all().filter(url = request.POST.get('delete_link')).delete()
+
     context = {
         'u_form': u_form,
-        'p_form': p_form
+        'p_form': p_form,
+        'l_form': l_form,
     }
 
     return render(request, 'my_profile.html', context)

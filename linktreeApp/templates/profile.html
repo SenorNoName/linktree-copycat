@@ -1,5 +1,6 @@
 {% extends "index.html" %}
 {% load crispy_forms_tags %}
+{% load linkinfo %}
 {% block content %}
 
   <a href="/"><h1>NetworkSapling</h1></a>
@@ -9,22 +10,59 @@
   <p style="text-align: center">{{ uid.email }}</p>
   <p id="links" style="display: none;">{{ uid.profile.links }}</p>
 
+  {% for link in uid.profile.link_set.all %}
+  <p class="link", style="display: none;">{{ link.url }}</p>
+  <p id="title {{ link.url }}" style="display: none;">{{ link.url | linktitle }}</p>
+  <p id="description {{ link.url }}" style="display: none;">{{ link.url | linkdescription }}</p>
+  {% endfor %}
+
+  <div id="buttons"></div>
+
   <script>
     //creates clickable buttons for each inputted link
-    var linkList = document.getElementById("links").textContent.split(", ")
+    var linkList = document.getElementsByClassName("link")
 
     for (let i = 0; i < linkList.length; i++) {
+      //creates clickable buttons for each inputted link
       var button = document.createElement("button")
-
-      button.innerText = new URL(linkList[i]).hostname.replace('www.', '')
+      button.innerText = document.getElementById("title " +linkList[i].innerText).innerHTML
       button.classList.add("blue-button")
       button.classList.add("button-profile")
-
+      button.classList.add("redirect")
       button.addEventListener("click", function() {
-        window.location.replace(linkList[i])
+        window.location.replace(linkList[i].innerText)
       })
+      document.getElementById("buttons").appendChild(button)
 
-      document.body.appendChild(button)
+      //creates div for preview of url for each link
+      var div = document.createElement("div")
+      div.classList.add("preview")
+      div.id = i
+      document.getElementById("buttons").appendChild(div)
+
+      //displays title for each link preview
+      var title = document.createElement("h2")
+      title.innerHTML = document.getElementById("title " +linkList[i].innerText).innerHTML
+      document.getElementById(i).appendChild(title)
+
+      //displays favicon for each link preview
+      var favicon = document.createElement("img")
+      favicon.src = "https://s2.googleusercontent.com/s2/favicons?domain_url="+linkList[i].innerText
+      document.getElementById(i).appendChild(favicon)
+
+      //displays description for each link preview
+      var description = document.createElement("p")
+      description.innerHTML = document.getElementById("description "+linkList[i].innerText).innerHTML
+      document.getElementById(i).appendChild(description)
+
+      //displays iframe preview image for each link preview
+      var preview = document.createElement("iframe")
+      preview.src = linkList[i].innerText
+      preview.style = "pointer-events: none;"
+      preview.scrolling = "no"
+      preview.width = "400px"
+      preview.height = "400px"
+      document.getElementById(i).appendChild(preview)
     }
   </script>
   
